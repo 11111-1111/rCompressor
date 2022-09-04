@@ -145,7 +145,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setGeometry(QtCore.QRect(10, 350, 461, 51))
         self.pushButton_4.setObjectName("pushButton_4")
         self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
-        self.progressBar.setGeometry(QtCore.QRect(20, 410, 461, 31))
+        self.progressBar.setGeometry(QtCore.QRect(15, 410, 461, 31))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
         MainWindow.setCentralWidget(self.centralwidget)
