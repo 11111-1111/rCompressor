@@ -185,13 +185,11 @@ class Ui_MainWindow(object):
             first_concat = stringed_name[stringed_name.rfind('/'): len(stringed_name)]
             orig_file_size = QFileInfo(fname[0]).size()
             self.old_file_name_info.setText("Old Filename: " + first_concat[1: first_concat.find( "\'")])
-            self.original_path_info.setText("Original Path: " + str(fname))
+            self.original_path_info.setText("Original Path: " + str(fname[0]))
             self.size_before_info.setText("Original Size: " + str(orig_file_size/1000) + " KB")
             self.new_file_name_info.setText("New Filename: " + first_concat[1: first_concat.find( "\'")])
-            self.compression()
-    
-    def compression(self):
-        pass
+            self.filepath.setText(str(fname[0]))
+            self.new_path_info.setText(str(fname[0]))
 
     def rename_new_file_popup(self): 
         new_file_name, ok = QInputDialog.getText(None, 'Rename File', 'New Filename:')
