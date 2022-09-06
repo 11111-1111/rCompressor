@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtCore import QFileInfo
 #from button_functions import *
 
 
@@ -177,13 +178,14 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         
     def select_file(self):
-        fname = QFileDialog.getOpenFileName(None, "Open File", "", "All Files (*);; Python Files (*.py)")
+        fname = QFileDialog.getOpenFileName(None, "Open File")
         if fname:
             stringed_name = str(fname)
             first_concat = stringed_name[stringed_name.rfind('/'): len(stringed_name)]
-            orig_file_size = QFileInfo(fname).size()
+            orig_file_size = QFileInfo(fname[0]).size()
             self.old_file_name_info.setText("Old Filename: " + first_concat[1: first_concat.find( "\'")])
             self.original_path_info.setText("Original Path: " + str(fname))
+            self.size_before_info.setText("Original Size: " + str(orig_file_size/1000) + " KB")
 
     def rename_new_file_popup(self):  
             rename_msg_box = QtWidgets.QInputDialog(self, 'Rename File', "New Filename:")
