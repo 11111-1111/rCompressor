@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog, QInputDialog
 from PyQt5.QtCore import QFileInfo
 #from button_functions import *
 
@@ -173,6 +173,7 @@ class Ui_MainWindow(object):
         #button connections
         self.select_file_button.clicked.connect(self.select_file)
         self.new_filename_button.clicked.connect(self.rename_new_file_popup)
+        self.new_path_button.clicked.connect(self.new_path)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -186,10 +187,21 @@ class Ui_MainWindow(object):
             self.old_file_name_info.setText("Old Filename: " + first_concat[1: first_concat.find( "\'")])
             self.original_path_info.setText("Original Path: " + str(fname))
             self.size_before_info.setText("Original Size: " + str(orig_file_size/1000) + " KB")
+            self.new_file_name_info.setText("New Filename: " + first_concat[1: first_concat.find( "\'")])
+            self.compression()
+    
+    def compression(self):
+        pass
 
-    def rename_new_file_popup(self):  
-            rename_msg_box = QtWidgets.QInputDialog(self, 'Rename File', "New Filename:")
-            x = rename_msg_box.exec_()
+    def rename_new_file_popup(self): 
+        new_file_name, ok = QInputDialog.getText(None, 'Rename File', 'New Filename:')
+        if ok:
+            self.new_file_name_info.setText("New File Name: " + str(new_file_name))
+
+    def new_path(self):
+        new_path_entered, ok = QInputDialog.getText(None, 'New Path', 'Select New Path:')
+        if ok:
+            self.new_path_info.setText("New Path: " + str(new_path_entered))
 
 
     
